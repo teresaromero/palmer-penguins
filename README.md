@@ -14,7 +14,9 @@ TBD
 
 ## Usage
 
-TBD
+### 🪴 Seeding the Database
+
+You can populate your MongoDB database using the Jupyter Notebook `Data to Mongo` located at the `data` directory of the project. Follow instructions and make sure to have a valid `MONGO_URL` on your `.env` file.
 
 ## Contributing
 
