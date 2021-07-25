@@ -3,16 +3,19 @@ from werkzeug.datastructures import ImmutableMultiDict
 
 
 def parseFilterValue(value, field_type):
-    if field_type == "str":
-        return value
-    if field_type == "int":
-        return int(value)
-    if field_type == "float":
-        return float(value)
-    if field_type == "bool" and value == "true":
-        return True
-    if field_type == "bool" and value == "false":
-        return False
+    try:
+        if field_type == "str":
+            return value
+        if field_type == "int":
+            return int(value)
+        if field_type == "float":
+            return float(value)
+        if field_type == "bool" and value == "true":
+            return True
+        if field_type == "bool" and value == "false":
+            return False
+    except ValueError:
+        return None
 
 
 def extractField(request_args: ImmutableMultiDict, field: str, field_type: str):
