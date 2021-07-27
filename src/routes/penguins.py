@@ -15,5 +15,5 @@ def get_penguins():
 @handle_error
 @app.route("/penguins/<individual_id>")
 def get_penguin(individual_id: str):
-    result = getPenguin(individual_id, request.args)
+    result = getPenguin(individual_id)
     return response(result)
