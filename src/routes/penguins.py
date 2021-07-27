@@ -7,7 +7,7 @@ from flask import request
 
 @handle_error
 @app.route("/penguins")
-def get_studies():
+def get_penguins():
     result = getPenguins(request.args)
     return response(result)
 
