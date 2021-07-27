@@ -23,3 +23,8 @@ def getPenguins(request_args: ImmutableMultiDict) -> str:
     result = cursor_response('penguins', documents_cursor,
                              total_documents, page, limit, skip, filter)
     return dumps(result)
+
+
+def getPenguin(individual_id: str) -> str:
+    result = penguins_collection.find_one({"individual_id": individual_id})
+    return dumps(result)
