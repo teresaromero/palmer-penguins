@@ -17,18 +17,19 @@ def recoverFilterString(filter: dict) -> str:
 
 def cursor_response(collection: str, documents_cursor: Cursor, total_documents: int, page: int, limit: int, skip: int, filter: dict):
     filter_string = recoverFilterString(filter)
+    data = list(documents_cursor)
     return {
         "_page": {
             "current": f"/{collection}?page={page}{filter_string}",
             "prev": f"/{collection}?page={page - 1}{filter_string}" if page > 1 else None,
-            "next": f"/{collection}?page={page + 1}{filter_string}" if total_documents - skip > 0 else None
+            "next": f"/{collection}?page={page + 1}{filter_string}" if total_documents - len(data) > 0 else None
         },
         "_metadata": {
             "count_total": total_documents,
-            "count_this_page": limit,
+            "count_this_page": len(data),
             "filter": filter,
         },
-        "data": list(documents_cursor),
+        "data": data,
     }
 
 
