@@ -3,10 +3,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_PORT = os.getenv("API_PORT") if os.getenv("API_PORT") else 3000
-FLASK_DEBUG = os.getenv("FLASK_DEBUG") if os.getenv("FLASK_DEBUG") else False
+API_PORT = int(os.getenv("API_PORT", 3000))
+FLASK_DEBUG = os.getenv("FLASK_DEBUG", 1)
 
-MONGO_URI = os.getenv("MONGO_URI") if os.getenv(
-    "MONGO_URI") else 'mongodb://mongodb:27017/palmer-penguins'
-MONGO_DBNAME = os.getenv("MONGO_DBNAME") if os.getenv(
-    "MONGO_DBNAME") else 'palmer-penguins'
+MONGO_USERNAME = os.getenv("MONGO_USERNAME")
+MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
+MONGO_HOST = os.getenv("MONGO_HOST")
+MONGO_PORT = os.getenv("MONGO_PORT", 27017)
+MONGO_DBNAME = os.getenv("MONGO_DBNAME")
+
+MONGO_URI = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DBNAME}"
