@@ -1,12 +1,9 @@
-
-
 from datetime import datetime
 from pandas.core.frame import DataFrame
-from database.client import open_db_connection, close_db_connection
 
 
 def parse_date(date: str):
-    return datetime.strptime(date, '%m/%d/%y')
+    return datetime.strptime(date, '%m/%d/%y').isoformat()
 
 
 def parse_column_name(column: str):
@@ -31,18 +28,6 @@ def clean_dataframe(dataframe: DataFrame):
     return dataframe
 
 
-def save_dataframe_to_database(dataframe: DataFrame):
-    documents = dataframe.to_dict("records")
-
-    db_client = open_db_connection()
-    db = db_client["palmer-penguins"]
-    collection = db["kaggle-penguins-lter"]
-    collection.drop()
-    try:
-        result = collection.insert_many(documents)
-        print(
-            f"🤩 Seed data Success: {len(result.inserted_ids)} documents added to database")
-        close_db_connection(db_client)
-
-    except Exception as e:
-        print(f"👹 Seed Data Error: {str(e)}")
+def save_dataframe_to_file(dataframe: DataFrame):
+    dataframe.to_json(
+        r'api/data/database/docker-entrypoint-initdb.d/seed.json', "records")

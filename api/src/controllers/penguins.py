@@ -21,8 +21,8 @@ def getPenguins(request_args: ImmutableMultiDict) -> str:
     else:
         limit = 0
     
-    total_documents = penguins_collection.count_documents(filter)
-    documents_cursor = penguins_collection.find(
+    total_documents = penguins_collection().count_documents(filter)
+    documents_cursor = penguins_collection().find(
         filter, {"_id": 0}).limit(limit).skip(skip)
 
     result = cursor_response('penguins', documents_cursor,
@@ -31,5 +31,5 @@ def getPenguins(request_args: ImmutableMultiDict) -> str:
 
 
 def getPenguin(individual_id: str) -> str:
-    result = penguins_collection.find_one({"individual_id": individual_id})
+    result = penguins_collection().find_one({"individual_id": individual_id})
     return dumps(result)

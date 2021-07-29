@@ -1,10 +1,11 @@
+from time import sleep
 from flask_pymongo import PyMongo
 from app import app
 import os
 
 mongo = None
 try:
-    mongo = PyMongo(app, serverSelectionTimeoutMS=1000)
+    mongo = PyMongo(app, serverSelectionTimeoutMS=5000)
 
     mongo.db.command('ping')
     app.logger.info("MongoDB connexion successful")
@@ -17,4 +18,5 @@ except Exception as e:
 def collection(name): return mongo.db[name]
 
 
-penguins_collection = collection("kaggle-penguins-lter")
+def penguins_collection():
+    return collection("kaggle-penguins-lter")

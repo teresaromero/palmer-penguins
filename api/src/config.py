@@ -1,11 +1,12 @@
 import os
-import dotenv
+from dotenv import load_dotenv
 
-dotenv.load_dotenv()
+load_dotenv()
 
-PORT = os.getenv("PORT") if os.getenv("PORT") else 5000
-FLASK_ENV = os.getenv("FLASK_ENV") if os.getenv("FLASK_ENV") else 'development'
+API_PORT = os.getenv("API_PORT") if os.getenv("API_PORT") else 3000
+FLASK_DEBUG = os.getenv("FLASK_DEBUG") if os.getenv("FLASK_DEBUG") else False
+
 MONGO_URI = os.getenv("MONGO_URI") if os.getenv(
-    "MONGO_URI") else 'mongodb://localhost:27017'
+    "MONGO_URI") else 'mongodb://mongodb:27017/palmer-penguins'
 MONGO_DBNAME = os.getenv("MONGO_DBNAME") if os.getenv(
     "MONGO_DBNAME") else 'palmer-penguins'

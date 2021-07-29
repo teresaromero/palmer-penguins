@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  mongodb:
+    build:
+      context: ./data
+    restart: always
+    ports:
+      - 27017:27017
+  api:
+    build:
+      context: ./api
+    restart: on-failure
+    ports:
+      - 3000:3000
+    environment: 
+      - FLASK_DEBUG=${FLASK_DEBUG}
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_DBNAME=${MONGO_DBNAME}
+    links: 
+      - mongodb

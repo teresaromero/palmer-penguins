@@ -2,7 +2,7 @@
 import pandas as pd
 import os
 
-from utils.main import clean_dataframe, save_dataframe_to_database
+from utils.main import clean_dataframe, save_dataframe_to_file
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -12,4 +12,4 @@ dataframe = pd.read_csv(
 
 final_dataframe = clean_dataframe(dataframe)
 
-save_dataframe_to_database(final_dataframe)
+save_dataframe_to_file(final_dataframe)
