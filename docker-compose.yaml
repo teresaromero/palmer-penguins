@@ -7,15 +7,22 @@ services:
     restart: always
     ports:
       - 27017:27017
+    volumes:
+      - data:/mongodb
   api:
     build:
       context: ./api
-    restart: on-failure
+    restart: always
     ports:
       - 3000:3000
-    environment: 
+    environment:
       - FLASK_DEBUG=${FLASK_DEBUG}
+      - FLASK_ENV=${FLASK_ENV}
       - MONGO_URI=${MONGO_URI}
       - MONGO_DBNAME=${MONGO_DBNAME}
-    links: 
+    links:
       - mongodb
+    volumes:
+      - ./api/src:/usr/app
+volumes:
+  data:
