@@ -1,9 +1,11 @@
 # CREATE JSON TO SEED INTO DATABASE
-FROM python AS seeder
+FROM python:3.9-slim-buster AS seeder
 
 WORKDIR /usr/data
 
 COPY . /usr/data/
+
+RUN pip install -r /usr/data/requirements.txt
 
 CMD [ "python", "generate-seed-data.py" ]
 
