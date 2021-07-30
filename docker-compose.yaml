@@ -35,5 +35,19 @@ services:
       - mongodb
     volumes:
       - ./api/src:/usr/app
+  streamlit:
+    build:
+      context: ./streamlit
+    restart: always
+    ports:
+      - 8501:8501
+    environment:
+      - API_PORT=${API_PORT}
+      - API_HOST=${API_HOST}
+    links:
+      - api
+    volumes:
+      - ./streamlit:/usr/app
+
 volumes:
   data:
