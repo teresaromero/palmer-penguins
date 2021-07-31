@@ -15,19 +15,20 @@ def parse_boolean(string: str):
 
 
 def clean_dataframe(dataframe: DataFrame):
-    dataframe["Date Egg"] = dataframe["Date Egg"].apply(
-        lambda x: parse_date(x))
-
-    dataframe = dataframe.drop("Comments", 1)
 
     dataframe = dataframe.rename(columns=lambda x: parse_column_name(x))
+
+    dataframe["date_egg"] = dataframe["date_egg"].apply(
+        lambda d: parse_date(d))
+
+    dataframe = dataframe.drop("comments", 1)
 
     dataframe["clutch_completion"] = dataframe["clutch_completion"].apply(
         lambda x: parse_boolean(x))
 
-    return dataframe
+    return dataframe.dropna()
 
 
 def save_dataframe_to_file(dataframe: DataFrame):
     dataframe.to_json(
-        r'api/data/database/docker-entrypoint-initdb.d/seed.json', "records")
+        r'database/docker-entrypoint-initdb.d/seed.json', "records")
