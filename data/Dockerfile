@@ -7,7 +7,7 @@ COPY . /usr/data/
 
 RUN pip install -r /usr/data/requirements.txt
 
-CMD [ "python", "generate-seed-data.py" ]
+RUN python generate-seed-data.py
 
 # USE MONGODB WITH JSON WHEN INIT
 FROM mongo:latest
