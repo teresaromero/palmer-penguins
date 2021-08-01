@@ -1,5 +1,6 @@
 from flask import Response
 from pymongo.cursor import Cursor
+from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 
 
 def recoverFilterString(filter: dict) -> str:
@@ -33,10 +34,14 @@ def cursor_response(collection: str, documents_cursor: Cursor, total_documents: 
     }
 
 
-def response(data: str, status: int = 200):
+def response(data, status: int = 200):
     return Response(
-        data,
+        dumps(data, json_options=RELAXED_JSON_OPTIONS),
         status,
         mimetype="application/json",
         content_type="application/json"
     )
+
+
+def error_response(message, status: int = 500):
+    return response({"error": message, "status_code": status}, status)
