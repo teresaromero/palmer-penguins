@@ -4,10 +4,10 @@ import streamlit as st
 
 
 @st.cache
-def get_all_penguins():
-    response = requests.get(f"{API_URL}/penguins?page=0")
+def fetch_all():
+    response = requests.get(f"{API_URL}/individuals")
     if response.status_code == 200:
         return response.json()
     else:
-        return {}
+        return None
     
