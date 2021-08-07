@@ -14,10 +14,9 @@ except Exception as e:
     exit()
 
 
-def findAll(coll: str, query={}, project={}, db: Database = mongo.db):
+def findAll(coll: str, query={}, project=None, db: Database = mongo.db):
     collection = db[coll]
-    projection = {**{"_id": 0}, **project}
-    return collection.find(query, projection)
+    return collection.find(query, project)
 
 
 def findOne(coll: str, query={}, project=None, db: Database = mongo.db):
