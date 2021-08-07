@@ -26,6 +26,9 @@ def clean_dataframe(dataframe: DataFrame):
     dataframe["clutch_completion"] = dataframe["clutch_completion"].apply(
         lambda x: parse_boolean(x))
 
+    dataframe = dataframe[(dataframe["sex"] == "FEMALE")
+                          | (dataframe["sex"] == "MALE")]
+
     return dataframe.dropna()
 
 
