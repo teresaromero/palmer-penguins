@@ -33,3 +33,7 @@ def findByIdAndUpdate(coll: str, id: str, set: dict, project=None, db: Database 
     if raw_result.modified_count == 0:
         raise Exception("doc_not_updated")
     return collection.find_one(query, project)
+
+
+def validate_collection(collection: str):
+    return collection in mongo.db.list_collection_names()
