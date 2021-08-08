@@ -39,7 +39,7 @@ db.createCollection("individuals");
 var individuals_cursor = db["raw-data"].aggregate([
   {
     $lookup: {
-      from: "studyname",
+      from: "studynames",
       localField: "studyname",
       foreignField: "name",
       as: "studyname_id",
@@ -47,7 +47,7 @@ var individuals_cursor = db["raw-data"].aggregate([
   },
   {
     $lookup: {
-      from: "island",
+      from: "islands",
       localField: "island",
       foreignField: "name",
       as: "island_id",
@@ -55,7 +55,7 @@ var individuals_cursor = db["raw-data"].aggregate([
   },
   {
     $lookup: {
-      from: "region",
+      from: "regions",
       localField: "region",
       foreignField: "name",
       as: "region_id",
