@@ -3,10 +3,9 @@ from components.species import dist_prop_by_species
 from utils.main import get_filter, filter_dt
 import streamlit as st
 
-from pandas.core.frame import DataFrame
 
-
-def show_histograms(dataframe: DataFrame, sidebar):
+def show_histograms(sidebar):
+    dataframe = st.session_state.dataframe
     with sidebar:
         st.subheader("Filters")
         filter_fields = ['sex', 'name_species', 'name_island']
