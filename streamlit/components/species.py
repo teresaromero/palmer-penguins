@@ -5,7 +5,7 @@ from streamlit.elements.arrow import Data
 
 def dist_prop_by_species(df: DataFrame, prop: str):
     title = prop.replace("_", " ").title()
-    st.subheader(f"Distribution of {title} By Species")
+    st.subheader(f"{title} By Species")
     vega_area_chart(df, prop, "name_species", title)
 
 
