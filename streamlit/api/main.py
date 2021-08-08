@@ -12,9 +12,9 @@ def request_api(source: str):
         return None
 
 
-def update_individual(id: str, payload: dict):
+def update_source(source:str, id: str, payload: dict):
     response = requests.patch(
-        f"{API_URL}/individuals/{id}", json=payload)
+        f"{API_URL}/{source}/{id}", json=payload)
     if response.status_code == 200:
         st.balloons()
         return response.json()
