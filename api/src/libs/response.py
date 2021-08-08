@@ -44,4 +44,10 @@ def response(data, status: int = 200):
 
 
 def error_response(message, status: int = 500):
+    if message == "doc_not_found":
+        message = "Document not found"
+        status = 404
+    if message == "doc_not_updated":
+        message = "Document was not updated"
+        status = 400
     return response({"error": message, "status_code": status}, status)

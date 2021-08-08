@@ -1,5 +1,5 @@
 from os import abort as exit
-
+from bson.objectid import ObjectId
 from pymongo.database import Database
 from app import app
 from flask_pymongo import PyMongo
@@ -21,4 +21,15 @@ def findAll(coll: str, query={}, project=None, db: Database = mongo.db):
 
 def findOne(coll: str, query={}, project=None, db: Database = mongo.db):
     collection = db[coll]
+    return collection.find_one(query, project)
+
+
+def findByIdAndUpdate(coll: str, id: str, set: dict, project=None, db: Database = mongo.db):
+    collection = db[coll]
+    query = {"_id": ObjectId(id)}
+    raw_result = collection.update_one(query, {'$set': set})
+    if raw_result.matched_count == 0:
+        raise Exception("doc_not_found")
+    if raw_result.modified_count == 0:
+        raise Exception("doc_not_updated")
     return collection.find_one(query, project)
