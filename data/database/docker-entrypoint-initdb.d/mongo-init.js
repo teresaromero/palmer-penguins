@@ -22,19 +22,19 @@ var region_coll = regions.map((region) => ({ name: region }));
 var islands = db["raw-data"].distinct("island");
 var island_coll = islands.map((island) => ({ name: island }));
 
-db.createCollection("studyname");
-db["studyname"].insertMany(studyname_coll);
+db.createCollection("studynames");
+db["studynames"].insertMany(studyname_coll);
 
 db.createCollection("species");
 db["species"].insertMany(species_coll);
 
-db.createCollection("region");
-db["region"].insertMany(region_coll);
+db.createCollection("regions");
+db["regions"].insertMany(region_coll);
 
-db.createCollection("island");
-db["island"].insertMany(island_coll);
+db.createCollection("islands");
+db["islands"].insertMany(island_coll);
 
-db.createCollection("individual");
+db.createCollection("individuals");
 
 var individuals_cursor = db["raw-data"].aggregate([
   {
@@ -116,7 +116,7 @@ var individuals_cursor = db["raw-data"].aggregate([
 var individuals_coll = individuals_cursor.toArray();
 printjson(individuals_coll);
 
-db["individual"].insertMany(individuals_coll);
+db["individuals"].insertMany(individuals_coll);
 
 db.createUser({
   user: MONGO_API_USERNAME,
