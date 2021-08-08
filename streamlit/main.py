@@ -24,5 +24,5 @@ if page == "Histograms":
     show_histograms(sidebar)
 if page == "Datasets":
     show_datasets()
-else:
+if page == "Home":
     show_home()
