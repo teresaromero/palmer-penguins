@@ -14,6 +14,8 @@ with sidebar:
 
 page = st.session_state["page"]
 if page == "Histograms":
-    show_histograms(dataframe, sidebar)
+    show_histograms(sidebar)
+if page == "Datasets":
+    show_datasets()
 else:
     show_home()
