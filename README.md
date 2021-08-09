@@ -26,14 +26,15 @@ Once having the seed for the database, building the mongo image, `mongo-init.js`
 
 #### Collections
 
-- `raw-data`- the seed.json itself
+- `kaggle-raw-data`- the seed.json itself
+- `ng-species-raw-data`- the species.json collection from web-scrapping NG
 - `individuals` - collection with each penguin information regarding measures, each document has pointers to `islands`, `regios`, `species`, `studynames`
 - `islands` - collection with the data regarding the island
 - `regions` - collection with the data regarding the region
 - `species` - collection with the data regarding the species
 - `studynames` - collection with the data regarding the species
 
-This collections are extracted from `raw-data` in order to be able to include extra data for each collection without changing the `individuals` collection that is the main one.
+This collections are extracted from `kaggle-raw-data` in order to be able to include extra data for each collection without changing the `individuals` collection that is the main one.
 
 ### :gear: API
 
