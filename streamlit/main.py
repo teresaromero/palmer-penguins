@@ -3,7 +3,8 @@ from components.sidebar import show_sidebar
 from pages.datasets import show_datasets
 from pages.home import show_home
 from pages.data_visualization import show_data_visualization
-from utils.constants import NAV_HOME, NAV_DATA, NAV_VIZ
+from pages.species import show_species
+from utils.constants import NAV_HOME, NAV_DATA, NAV_VIZ, NAV_SPECIES
 import streamlit as st
 
 st.set_page_config(
@@ -23,3 +24,5 @@ if page == NAV_DATA:
     show_datasets()
 if page == NAV_HOME:
     show_home()
+if page == NAV_SPECIES:
+    show_species()
