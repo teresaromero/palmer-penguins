@@ -14,8 +14,9 @@ def parse_boolean(string: str):
     return True if string == "Yes" else False if string == "No" else None
 
 
-def clean_dataframe(dataframe: DataFrame):
+def clean_kg_dataframe(dataframe: DataFrame):
 
+    
     dataframe = dataframe.rename(columns=lambda x: parse_column_name(x))
 
     dataframe["date_egg"] = dataframe["date_egg"].apply(
@@ -29,9 +30,22 @@ def clean_dataframe(dataframe: DataFrame):
     dataframe = dataframe[(dataframe["sex"] == "FEMALE")
                           | (dataframe["sex"] == "MALE")]
 
-    return dataframe.dropna()
+    species_arr = dataframe["species"]
+    common_name = []
+    scientific_name = []
+    for s in species_arr:
+        name_arr = s.split("(")
+        common_name.append(name_arr[0].replace(")", "").strip().lower())
+        scientific_name.append(name_arr[1].replace(")", "").strip().lower())
+
+    dataframe['common_name'] = common_name
+    dataframe['scientific_name'] = scientific_name
 
 
-def save_dataframe_to_file(dataframe: DataFrame):
-    dataframe.to_json(
-        r'database/docker-entrypoint-initdb.d/seed.json', "records")
+    dataframe.dropna(inplace=True)
+
+    return dataframe
+
+
+def save_dataframe_to_file(dataframe: DataFrame, location):
+    dataframe.to_json(location, "records")
