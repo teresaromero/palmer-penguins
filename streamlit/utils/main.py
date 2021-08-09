@@ -58,12 +58,6 @@ def filter_dt(initial_df: DataFrame, filter_params: list[str]):
     return df_final
 
 
-def menu_selector():
-    st.subheader("Navigation")
-    st.radio("Go to...", ["Home", "Datasets",
-             "Histograms", "Info"], key="page")
-
-
 def inizialize_dataframe():
     if 'df_individuals' not in st.session_state:
         st.session_state['df_individuals'] = get_dataframe('individuals')
