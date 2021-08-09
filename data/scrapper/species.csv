@@ -1,0 +1,4 @@
+common_name,scientific_name,type,diet,group_name,average_life_span_in_the_wild,size,weight,iucn_red_list_status,current_population_trend,source_url
+gentoo penguin,pygoscelis papua,birds,carnivore,colony,15 to 20 years,30 inches,12 pounds,near threatened,decreasing,https://www.nationalgeographic.com/animals/birds/facts/gentoo-penguin
+adelie penguin,pygoscelis adeliae,birds,carnivore,colony,11 to 20 years,27.5 inches,8.5 to 12 pounds,near threatened,increasing,https://www.nationalgeographic.com/animals/birds/facts/adelie-penguin
+chinstrap penguin,pygoscelis antarcticus,,carnivore,colony,,28 inches,6.611.0 pounds,least concern,decreasing,https://www.nationalgeographic.com/animals/birds/facts/chinstrap-penguin
