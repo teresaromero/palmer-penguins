@@ -1,4 +1,4 @@
-from utils.constants import FILTER_FIELDS
+from utils.constants import FILTER_FIELDS, PROJECT_DATASET_COLUMNS
 from pandas.core.frame import DataFrame
 from pandas.core.series import Series
 import streamlit as st
@@ -62,6 +62,7 @@ def inizialize_dataframe():
     if 'df_islands' not in st.session_state:
         st.session_state['df_islands'] = get_dataframe('islands')
     if 'dataframe' not in st.session_state:
-        st.session_state['dataframe'] = st.session_state.df_individuals.merge(
+        merged_df = st.session_state.df_individuals.merge(
             st.session_state.df_species, left_on='species_id', right_on='_id', suffixes=('_indv', '_species')).merge(
             st.session_state.df_islands, left_on='island_id', right_on='_id', suffixes=('_species', '_island'))
+        st.session_state['dataframe'] = merged_df[PROJECT_DATASET_COLUMNS]
