@@ -27,6 +27,7 @@ def selected_filters():
 
 
 def show_data_visualization():
+
     filter = selected_filters()
 
     filtered_dt = filter_dataframe(filter)
@@ -36,3 +37,17 @@ def show_data_visualization():
     else:
         for f in MEASURES_DISTRIBUTION:
             dist_prop_by_species(filtered_dt, f)
+
+    delta_scatter()
+
+
+def delta_scatter():
+    st.header("δ15N vs. δ13C")
+    st.vega_lite_chart(st.session_state.dataframe, {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "mark": "circle",
+        "encoding": {
+            "x": {"field": "delta_13_c", "type": "quantitative"},
+            "y": {"field": "delta_15_n", "type": "quantitative"}
+        }
+    }, use_container_width=True)
