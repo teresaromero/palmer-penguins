@@ -1,8 +1,15 @@
 import streamlit as st
+from utils.constants import NAVIGATION, NAV_VIZ
+from pages.data_visualization import sidebar_filter
 
 
-sidebar = st.sidebar
+def navbar():
+    st.subheader("Navigation")
+    st.radio("Go to...", options=NAVIGATION, key="page")
 
-sidebar.title("🐧 Palmer Penguins")
-sidebar.header("🐧 Palmer Penguins")
-sidebar.subheader("🐧 Palmer Penguins")
+def show_sidebar():
+    sidebar = st.sidebar
+    with sidebar:
+        navbar()
+        if st.session_state.page == NAV_VIZ:
+            sidebar_filter()

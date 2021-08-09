@@ -1,8 +1,9 @@
+from utils.main import inizialize_dataframe
+from components.sidebar import show_sidebar
 from pages.datasets import show_datasets
 from pages.home import show_home
-from pages.histograms import show_histograms
-from utils.main import inizialize_dataframe
-from utils.navigation import navbar, NAV_HOME, NAV_DATA, NAV_VIZ
+from pages.data_visualization import show_data_visualization
+from utils.constants import NAV_HOME, NAV_DATA, NAV_VIZ
 import streamlit as st
 
 st.set_page_config(
@@ -13,16 +14,11 @@ st.set_page_config(
 )
 
 inizialize_dataframe()
-
-
-sidebar = st.sidebar
-with sidebar:
-    navbar()
-
-
+show_sidebar()
 page = st.session_state["page"]
+
 if page == NAV_VIZ:
-    show_histograms(sidebar)
+    show_data_visualization()
 if page == NAV_DATA:
     show_datasets()
 if page == NAV_HOME:

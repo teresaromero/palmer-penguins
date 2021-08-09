@@ -1,3 +1,4 @@
+from utils.constants import FILTER_FIELDS
 from pandas.core.frame import DataFrame
 from pandas.core.series import Series
 import streamlit as st
@@ -23,6 +24,8 @@ def parse_bson(bson):
         bson['species_id'] = parse_oid(bson['species_id'])
     if 'island_id' in bson:
         bson['island_id'] = parse_oid(bson['island_id'])
+    if 'region_id' in bson:
+        bson['region_id'] = parse_oid(bson['region_id'])
     if 'date_egg' in bson:
         bson['date_egg'] = parse_date(bson['date_egg'])
     return bson
@@ -41,20 +44,13 @@ def get_dataframe(source: str):
         st.error(str(e))
 
 
-def get_filter(df: DataFrame, field: str):
-    return ("ALL",) + tuple(df[field].unique())
+def filter_dataframe(filter: dict):
+    df_final: DataFrame = st.session_state.dataframe
 
+    for f in FILTER_FIELDS:
+        if filter[f] != "ALL":
+            df_final = df_final[df_final[f] == filter[f]]
 
-def filter_dt(initial_df: DataFrame, filter_params: list[str]):
-    sex_filter, species_filter, island_filter = filter_params
-    df_final = initial_df
-
-    if sex_filter != "ALL":
-        df_final = df_final[df_final["sex"] == sex_filter]
-    if species_filter != "ALL":
-        df_final = df_final[df_final["name_species"] == species_filter]
-    if island_filter != "ALL":
-        df_final = df_final[df_final["name_island"] == island_filter]
     return df_final
 
 
