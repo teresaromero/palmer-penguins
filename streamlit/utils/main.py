@@ -44,8 +44,8 @@ def get_dataframe(source: str):
         st.error(str(e))
 
 
-def filter_dataframe(filter: dict):
-    df_final: DataFrame = st.session_state.dataframe
+def filter_dataframe(dataframe, filter: dict):
+    df_final: DataFrame = dataframe
 
     for f in FILTER_FIELDS:
         if filter[f] != "ALL":
@@ -53,16 +53,3 @@ def filter_dataframe(filter: dict):
 
     return df_final
 
-
-def inizialize_dataframe():
-    if 'df_individuals' not in st.session_state:
-        st.session_state['df_individuals'] = get_dataframe('individuals')
-    if 'df_species' not in st.session_state:
-        st.session_state['df_species'] = get_dataframe('species')
-    if 'df_islands' not in st.session_state:
-        st.session_state['df_islands'] = get_dataframe('islands')
-    if 'dataframe' not in st.session_state:
-        merged_df = st.session_state.df_individuals.merge(
-            st.session_state.df_species, left_on='species_id', right_on='_id', suffixes=('_indv', '_species')).merge(
-            st.session_state.df_islands, left_on='island_id', right_on='_id', suffixes=('_species', '_island'))
-        st.session_state['dataframe'] = merged_df[PROJECT_DATASET_COLUMNS]

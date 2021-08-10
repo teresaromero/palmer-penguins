@@ -1,9 +1,10 @@
+from utils.main import get_dataframe
 import streamlit as st
 from pandas.core.frame import DataFrame
 
 
 def show_species():
-    df: DataFrame = st.session_state.df_species
+    df: DataFrame = get_dataframe('species')
     st.header("Meet the peeps!")
     st.subheader(
         "These are the basic data from the species on the data of this project")

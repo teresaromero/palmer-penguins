@@ -1,7 +1,11 @@
-from libs.mongo_client import findAll, findByIdAndUpdate
+from libs.mongo_client import findAll, findByIdAndUpdate, findAllIndividuals
 
 
 def get_all(collection: str, query={}, project=None):
+
+    if collection == 'individuals':
+        return list(findAllIndividuals())
+
     cursor = findAll(
         collection,
         query,

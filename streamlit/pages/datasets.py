@@ -1,9 +1,10 @@
 import json
-from utils.main import parse_bson
-import pandas as pd
+from utils.constants import NAV_DATA
+from utils.main import get_dataframe
 from api.main import update_source
 from pandas.core.frame import DataFrame
 import streamlit as st
+from streamlit import caching
 
 
 def get_payload(collection):
@@ -41,10 +42,10 @@ def update_edit(collection: str, row_index, id_edit):
     payload = get_payload(collection)
     res = update_source(collection.lower(), id_edit, payload)
     if res:
-        df_update = pd.DataFrame(parse_bson(res), index=[row_index])
-        st.session_state[f"df_{collection.lower()}"].loc[row_index] = df_update.loc[row_index]
-    clear_row()
+        caching.clear_cache()
+        clear_row()
 
+    st.session_state.page == NAV_DATA
 
 def clear_row():
     del st.session_state.row_index
@@ -70,7 +71,8 @@ def edit_datasets():
         row_index = int(st.session_state.row_index)
         collection = st.session_state.collection_edit.lower()
         try:
-            row_selected_str = st.session_state[f"df_{collection}"].iloc[[row_index]].to_json(
+            df = get_dataframe(collection)
+            row_selected_str = df.iloc[[row_index]].to_json(
                 orient="records")
             row_selected = json.loads(row_selected_str)[0]
 
@@ -85,9 +87,9 @@ def edit_datasets():
 
 
 def show_datasets():
-    df_individuals: DataFrame = st.session_state.df_individuals
-    df_species: DataFrame = st.session_state.df_species
-    df_islands: DataFrame = st.session_state.df_islands
+    df_individuals: DataFrame = get_dataframe('individuals')
+    df_species: DataFrame = get_dataframe('species')
+    df_islands: DataFrame = get_dataframe('islands')
 
     st.header("Raw Datasets")
 

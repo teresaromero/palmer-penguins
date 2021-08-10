@@ -36,3 +36,34 @@ def findByIdAndUpdate(coll: str, id: str, set: dict, project=None, db: Database 
 
 def validate_collection(collection: str):
     return collection in mongo.db.list_collection_names()
+
+
+def findAllIndividuals(db: Database = mongo.db):
+    collection = db['individuals']
+    return collection.aggregate([
+        {
+            '$lookup': {
+                'from': 'islands',
+                'localField': 'island_id',
+                'foreignField': '_id',
+                'as': 'island'
+            }
+        }, {
+            '$unwind': {
+                'path': '$island'
+            }
+        }, {
+            '$project': {
+                'culmen_length': 1,
+                'culmen_depth': 1,
+                'flipper_length': 1,
+                'body_mass': 1,
+                'sex': 1,
+                'delta_15_n': 1,
+                'delta_13_c': 1,
+                'common_name': 1,
+                'scientific_name': 1,
+                'name_island': '$island.name'
+            }
+        }
+    ])

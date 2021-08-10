@@ -1,4 +1,5 @@
 
+from utils.main import get_dataframe
 from utils.constants import MEASURES_DISTRIBUTION, FILTER_FIELDS
 from pandas.core.frame import DataFrame
 from components.species import dist_prop_by_species
@@ -7,7 +8,7 @@ import streamlit as st
 
 
 def sidebar_filter():
-    dataframe: DataFrame = st.session_state.dataframe
+    dataframe: DataFrame = get_dataframe('individuals')
     st.subheader("Filters")
     fields = FILTER_FIELDS
     for f in fields:
@@ -27,10 +28,10 @@ def selected_filters():
 
 
 def show_data_visualization():
-
+    dataframe = get_dataframe('individuals')
     filter = selected_filters()
 
-    filtered_dt = filter_dataframe(filter)
+    filtered_dt = filter_dataframe(dataframe, filter)
 
     if filtered_dt.empty:
         st.warning("Sorry, your filtering does not match with any data")
@@ -38,12 +39,12 @@ def show_data_visualization():
         for f in MEASURES_DISTRIBUTION:
             dist_prop_by_species(filtered_dt, f)
 
-    delta_scatter()
+    delta_scatter(dataframe)
 
 
-def delta_scatter():
+def delta_scatter(dataframe: DataFrame):
     st.header("δ15N vs. δ13C")
-    st.vega_lite_chart(st.session_state.dataframe, {
+    st.vega_lite_chart(dataframe, {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "mark": "circle",
         "encoding": {

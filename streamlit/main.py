@@ -1,4 +1,3 @@
-from utils.main import inizialize_dataframe
 from components.sidebar import show_sidebar
 from pages.datasets import show_datasets
 from pages.home import show_home
@@ -14,7 +13,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-inizialize_dataframe()
 show_sidebar()
 page = st.session_state["page"]
 
