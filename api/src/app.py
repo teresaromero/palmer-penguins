@@ -1,3 +1,4 @@
 from flask import Flask
+from config import FLASK_APP
 
-app = Flask("palmer-penguins-api")
+app = Flask(FLASK_APP)

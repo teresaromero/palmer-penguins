@@ -11,7 +11,6 @@ try:
     app.logger.info("MongoDB connexion successful")
 except Exception as e:
     app.logger.error(f"MongoDB connexion: {str(e)}")
-    exit()
 
 
 def findAll(coll: str, query={}, project=None, db: Database = mongo.db):
