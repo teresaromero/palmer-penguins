@@ -49,6 +49,8 @@ def update_edit(collection: str, id_edit):
 
 def clear_row():
     del st.session_state.row_index
+    del st.session_state.passphrase
+    del st.session_state.show_edit
 
 
 sex_opts = ["FEMALE", "MALE"]
@@ -80,10 +82,17 @@ def edit_datasets():
             with col1:
                 st.json(row_selected)
             with col2:
-                edit_form(collection, row_index, row_selected)
+                edit_form(collection, row_selected)
 
         except Exception as e:
             st.error(str(e))
+
+
+def check_pass():
+    if st.session_state.passphrase == "thisIsVeryBad":
+        st.session_state.show_edit = True
+    else:
+        st.session_state.passphrase = ""
 
 
 def show_datasets():
@@ -102,10 +111,20 @@ def show_datasets():
     st.subheader("Islands Dataset")
     st.dataframe(df_islands)
 
-    edit_datasets()
+    if "passphrase" not in st.session_state:
+        st.session_state["passphrase"] = ""
+
+    st.text_input("Passphrase to edit dataframes:",
+                  type="password", key="passphrase", value=st.session_state.passphrase, on_change=check_pass)
+
+    if "show_edit" not in st.session_state:
+        st.session_state["show_edit"] = False
+
+    if st.session_state.show_edit:
+        edit_datasets()
 
 
-def edit_form(collection, row_index, row_selected):
+def edit_form(collection, row_selected):
     with st.form(key='edit_form', clear_on_submit=True):
         id_edit = row_selected["_id"]
         if collection == "individuals":
