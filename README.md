@@ -28,7 +28,7 @@ Once having the seed for the database, building the mongo image, `mongo-init.js`
 
 - `kaggle-raw-data`- the seed.json itself
 - `ng-species-raw-data`- the species.json collection from web-scrapping NG
-- `individuals` - collection with each penguin information regarding measures, each document has pointers to `islands`, `regios`, `species`, `studynames`
+- `individuals` - collection with each penguin information regarding measures, each document has pointers to `islands`, `regions`, `species`, `studynames`
 - `islands` - collection with the data regarding the island
 - `regions` - collection with the data regarding the region
 - `species` - collection with the data regarding the species
@@ -77,6 +77,7 @@ This is the service where the data is displayed. This sub-repo is structured as 
 - Multi-page streamlit app
 - Dashboard with data visualizations
 - Edit database data
+- Single page with species detail
 
 ## Usage
 
