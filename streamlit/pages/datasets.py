@@ -38,14 +38,14 @@ def islands_payload():
     }
 
 
-def update_edit(collection: str, row_index, id_edit):
+def update_edit(collection: str, id_edit):
+    clear_row()
     payload = get_payload(collection)
     res = update_source(collection.lower(), id_edit, payload)
     if res:
         caching.clear_cache()
-        clear_row()
+        st.session_state.page == NAV_DATA
 
-    st.session_state.page == NAV_DATA
 
 def clear_row():
     del st.session_state.row_index
@@ -116,7 +116,7 @@ def edit_form(collection, row_index, row_selected):
             islands_edit_form(row_selected)
 
         st.form_submit_button(
-            label="Edit", help="Persist the changes in the database", on_click=update_edit, args=(collection, row_index, id_edit))
+            label="Edit", help="Persist the changes in the database", on_click=update_edit, args=(collection, id_edit))
         st.form_submit_button(
             label="Cancel", help="Exit edit", on_click=clear_row)
 
