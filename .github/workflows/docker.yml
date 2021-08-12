@@ -3,6 +3,8 @@ name: Images Build and Push
 on:
   push:
     branches: [development]
+    paths-ignore:
+        - '**/README.md'
 
 jobs:
   build:
