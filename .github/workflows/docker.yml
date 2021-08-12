@@ -15,8 +15,8 @@ jobs:
       - name: docker build and push
         env:
           MONGO_DBNAME: ${{ secrets.MONGO_DBNAME }}
-          MONGO_INITDB_ROOT_USERNAME: ${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
-          MONGO_INITDB_ROOT_PASSWORD: ${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
+          MONGO_ADMIN_USERNAME: ${{ secrets.MONGO_ADMIN_USERNAME }}
+          MONGO_ADMIN_PASSWORD: ${{ secrets.MONGO_ADMIN_PASSWORD }}
           MONGO_API_PASSWORD: ${{ secrets.MONGO_API_PASSWORD }}
           MONGO_API_USERNAME: ${{ secrets.MONGO_API_USERNAME }}
           API_PORT: ${{ secrets.API_PORT }}
@@ -28,5 +28,6 @@ jobs:
           MONGO_PORT: ${{ secrets.MONGO_PORT }}
           API_HOST: ${{ secrets.API_HOST }}
         run: |
+          docker-compose -f docker-compose.yml -f docker-compose.ci.yml build
           docker-compose -f docker-compose.yml -f docker-compose.ci.yml push
 
