@@ -30,6 +30,6 @@ jobs:
           MONGO_PORT: ${{ secrets.MONGO_PORT }}
           API_HOST: ${{ secrets.API_HOST }}
         run: |
-          docker-compose -f docker-compose.yml -f docker-compose.ci.yml build
-          docker-compose -f docker-compose.yml -f docker-compose.ci.yml push
+          docker-compose -f docker-compose.yml -f docker-compose.development.yml -f docker-compose.ci.yml build
+          docker-compose -f docker-compose.yml -f docker-compose.development.yml -f docker-compose.ci.yml push
 

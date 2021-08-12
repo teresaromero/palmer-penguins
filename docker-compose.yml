@@ -3,15 +3,11 @@ version: "3.9"
 services:
   mongodb:
     image: teresaromero/palmer-mongodb:latest
-    build:
-      context: ./data
     restart: always
     ports:
       - 27017:27017
   api:
     image: teresaromero/palmer-api:latest
-    build:
-      context: ./api
     restart: always
     ports:
       - 3000:3000
@@ -19,8 +15,6 @@ services:
       - mongodb
   streamlit:
     image: teresaromero/palmer-streamlit:latest
-    build:
-      context: ./streamlit
     restart: always
     ports:
       - 8501:8501

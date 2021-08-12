@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  mongodb:
+    build:
+      context: ./data
+  api:
+    build:
+      context: ./api
+  streamlit:
+    build:
+      context: ./streamlit
