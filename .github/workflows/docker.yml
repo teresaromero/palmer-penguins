@@ -4,7 +4,7 @@ on:
   push:
     branches: [development]
     paths-ignore:
-        - '**/README.md'
+      - "**/README.md"
 
 jobs:
   build:
@@ -24,12 +24,8 @@ jobs:
           API_PORT: ${{ secrets.API_PORT }}
           FLASK_DEBUG: ${{ secrets.FLASK_DEBUG }}
           FLASK_ENV: ${{ secrets.FLASK_ENV }}
-          MONGO_USERNAME: ${{ secrets.MONGO_API_USERNAME }}
-          MONGO_PASSWORD: ${{ secrets.MONGO_API_PASSWORD }}
-          MONGO_HOST: ${{ secrets.MONGO_HOST }}
-          MONGO_PORT: ${{ secrets.MONGO_PORT }}
-          API_HOST: ${{ secrets.API_HOST }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          API_URL: ${{ secrets.API_URL }}
         run: |
-          docker-compose -f docker-compose.yml -f docker-compose.development.yml -f docker-compose.ci.yml build
-          docker-compose -f docker-compose.yml -f docker-compose.development.yml -f docker-compose.ci.yml push
-
+          docker-compose build
+          docker-compose push

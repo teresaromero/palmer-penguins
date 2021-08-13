@@ -8,11 +8,4 @@ FLASK_DEBUG = os.getenv("FLASK_DEBUG", 1)
 FLASK_HOST = os.getenv("FLASK_HOST", "0.0.0.0")
 FLASK_APP = os.getenv("FLASK_APP", "palmer-app")
 
-
-MONGO_USERNAME = os.getenv("MONGO_USERNAME")
-MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
-MONGO_HOST = os.getenv("MONGO_HOST")
-MONGO_PORT = os.getenv("MONGO_PORT", 27017)
-MONGO_DBNAME = os.getenv("MONGO_DBNAME")
-
-MONGO_URI = f"mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DBNAME}"
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/palmer-penguins")

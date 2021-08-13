@@ -3,20 +3,47 @@ version: "3.9"
 services:
   mongodb:
     image: teresaromero/palmer-mongodb:latest
+    build:
+      context: ./data
     restart: always
     ports:
       - 27017:27017
+    environment:
+      - MONGO_DBNAME=${MONGO_DBNAME}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ADMIN_PASSWORD}
+      - MONGO_API_PASSWORD=${MONGO_API_PASSWORD}
+      - MONGO_API_USERNAME=${MONGO_API_USERNAME}
+    volumes:
+      - data:/mongodb
   api:
     image: teresaromero/palmer-api:latest
+    build:
+      context: ./api
     restart: always
     ports:
-      - 3000:3000
+      - 3000:${API_PORT}
     links:
       - mongodb
+    environment:
+      - API_PORT=${API_PORT}
+      - FLASK_DEBUG=${FLASK_DEBUG}
+      - FLASK_ENV=${FLASK_ENV}
+      - MONGO_URI=${MONGO_URI}
+    volumes:
+      - ./api/src:/usr/app
   streamlit:
     image: teresaromero/palmer-streamlit:latest
+    build:
+      context: ./streamlit
     restart: always
     ports:
       - 8501:8501
     links:
       - api
+    environment:
+      - API_URL=${API_URL}
+    volumes:
+      - ./streamlit:/usr/app
+volumes:
+  data:
