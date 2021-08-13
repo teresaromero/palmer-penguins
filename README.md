@@ -1,11 +1,16 @@
 # Insignts for Palmer Archipelago Penguins
 
 [![Images Build and Push](https://github.com/teresaromero/palmer-penguins/actions/workflows/docker.yml/badge.svg?branch=development&event=push)](https://github.com/teresaromero/palmer-penguins/actions/workflows/docker.yml)
+[![GitHub license](https://img.shields.io/github/license/teresaromero/palmer-penguins)](https://github.com/teresaromero/palmer-penguins/blob/development/LICENSE.md)
+
 ## About the Data
 
 Data has been gathered from different sources listed below:
 
 - [Kaggle Dataset](https://www.kaggle.com/parulpandey/palmer-archipelago-antarctica-penguin-data)
+- [National Geographic](https://www.nationalgeographic.com/animals/birds/facts/gentoo-penguin)
+- [National Geographic](https://www.nationalgeographic.com/animals/birds/facts/adelie-penguin)
+- [National Geographic](https://www.nationalgeographic.com/animals/birds/facts/chinstrap-penguin)
 
 ## Motivation
 
@@ -86,10 +91,9 @@ You can clone the repo and run `docker-compose up --build`.
 
 ### .ENV
 
-There are couple of environmental variables needed to feed into the project in a local .env
+Env variables needed to run the project
 
-- `MONGO_HOST` - the host of the database, `http://localhost`or `mongodb (container name)`.
-- `MONGO_PORT` - port where mongodb will be available, usually `27017`.
+- `MONGO_URI` - uri for MongoDB DB (incl. db-name).
 - `MONGO_DBNAME` - database name where all data will be stored.
 
 - `MONGO_ADMIN_USERNAME` - username for the database admin user.
@@ -98,11 +102,11 @@ There are couple of environmental variables needed to feed into the project in a
 - `MONGO_API_USERNAME` - username for the database user used in the api.
 - `MONGO_API_PASSWORD` - password for the database user used in the api.
 
-- `FLASK_DEBUG` - flag to run Flask in debug mode, `0` (false) or `1` (true).
-- `FLASK_ENV` - environment where Flask is running, `development` or `production`.
+- `FLASK_DEBUG` - flag to run Flask in debug mode, `False` or `True`.
+- `FLASK_ENV` - environment where Flask is running, `development`.
 
-- `API_HOST` - the host of the API, `http://localhost`or `api (container name)`.
-- `API_PORT` - the port where the API will be available, usually `3000`in development and `8080` in prod.
+- `API_URL` - url for the API.
+- `API_PORT` - the port where the API will be available.
 
 ## Contributing
 
