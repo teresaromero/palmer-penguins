@@ -22,7 +22,7 @@ services:
       context: ./api
     restart: always
     ports:
-      - 3000:${API_PORT}
+      - 3000:3000
     links:
       - mongodb
     environment:
