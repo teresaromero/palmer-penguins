@@ -78,16 +78,21 @@ This is the service where the data is displayed. This sub-repo is structured as 
 - `components` - dir with the components used along the project
 - `api` - dir with the methods used to call backend to retrieve data
 
-#### Features
+#### Features and Screenshots
 
-- Multi-page streamlit app
-- Dashboard with data visualizations
-- Edit database data
-- Single page with species detail
+![Multi-page streamlit app](docs/st_home.jpeg "Multi-page streamlit app")
 
-## Usage
+![Dashboard with data visualizations](docs/st_data_viz.jpeg "Dashboard with data visualizations")
 
-You can clone the repo and run `docker-compose up --build`.
+![Read database data](docs/st_datasets.jpeg "Read database data")
+
+![Edit database data](docs/st_data_edit.jpeg "Edit database data")
+
+![Single page with species detail](docs/st_species.jpeg "Single page with species detail")
+
+## Installation
+
+You can clone the repo and run `docker-compose up`.
 
 ### .ENV
 
@@ -117,9 +122,8 @@ Please make sure to update tests as appropriate.
 ## Stack
 
 API - Python, Flask, PyMongo
-DB - MongoDB
+Data - MongoDB, Python, Jupyter Notebook, Pandas, mongoshell script
 Streamlit - Python, Pandas, Streamlit API, Streamlit State API
-
 
 Commit tool - Commitizen
 
