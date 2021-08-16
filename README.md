@@ -22,11 +22,10 @@ Requirements for the project is to build a data app. This app should have a back
 
 ## Stack
 
-API - Python, Flask, PyMongo
-Data - MongoDB, Python, Jupyter Notebook, Pandas, mongoshell script
-Streamlit - Python, Pandas, Streamlit API, Streamlit State API
-
-Commit tool - Commitizen
+- API - Python, Flask, PyMongo
+- Data - MongoDB, Python, Jupyter Notebook, Pandas, mongoshell script
+- Streamlit - Python, Pandas, Streamlit API, Streamlit State API
+- Other tools - Commitizen, GitHub Projects, GitHub Actions, Okteto
 
 ## Services
 
