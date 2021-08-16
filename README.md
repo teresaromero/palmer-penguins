@@ -116,9 +116,12 @@ Please make sure to update tests as appropriate.
 
 ## Stack
 
-Flask, Streamlit, MongoDB, Docker
-Pandas, PyMongo
-Commitizen
+API - Python, Flask, PyMongo
+DB - MongoDB
+Streamlit - Python, Pandas, Streamlit API, Streamlit State API
+
+
+Commit tool - Commitizen
 
 ## License
 
