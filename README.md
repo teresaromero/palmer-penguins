@@ -1,3 +1,5 @@
+![Title Image](docs/hero.jpeg "Palmer Penguins Hero")
+
 # Insignts for Palmer Archipelago Penguins
 
 [![Images Build and Push](https://github.com/teresaromero/palmer-penguins/actions/workflows/docker.yml/badge.svg?branch=development&event=push)](https://github.com/teresaromero/palmer-penguins/actions/workflows/docker.yml)
@@ -17,6 +19,14 @@ Data has been gathered from different sources listed below:
 The purpose for this project is educational. This project is the first of two to be done in the Data Bootcamp at :tangerine: [Core Code School](https://www.corecode.school/bootcamp/big-data-machine-learning).
 
 Requirements for the project is to build a data app. This app should have a backend built with Flask, a frontend built with Streamlit and a database (Postgres or MongoDB).
+
+## Stack
+
+API - Python, Flask, PyMongo
+Data - MongoDB, Python, Jupyter Notebook, Pandas, mongoshell script
+Streamlit - Python, Pandas, Streamlit API, Streamlit State API
+
+Commit tool - Commitizen
 
 ## Services
 
@@ -113,19 +123,21 @@ Env variables needed to run the project
 - `API_URL` - url for the API.
 - `API_PORT` - the port where the API will be available.
 
+## WIP
+
+Some features have been not included on this first version, so here are some WIP and future work to be done on this repo:
+
+- Production pipeline for API and Streamlit
+- Refactor MongoDB seed
+- Add Auth to Flask API
+- Enable PDF download of visualizations
+- Add more visualizations
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
-## Stack
-
-API - Python, Flask, PyMongo
-Data - MongoDB, Python, Jupyter Notebook, Pandas, mongoshell script
-Streamlit - Python, Pandas, Streamlit API, Streamlit State API
-
-Commit tool - Commitizen
 
 ## License
 
